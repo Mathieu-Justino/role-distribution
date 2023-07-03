@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="static/css/styles.css" rel="stylesheet">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <a href="https://www.secrethitler.com/"><img src="static/images/Secret_Hitler.svg" class="logo"></a>
+            <div class="menu-buttons">
+                <a class="menu-button {% if active_page == 'home' %}active{% endif %}" href="/">HOME</a>
+                <a class="menu-button {% if active_page == 'how-to-play' %}active{% endif %}" href="/how-to-play">HOW TO PLAY</a>
+                <a class="menu-button {% if active_page == 'rules' %}active{% endif %}" href="/rules">RULES</a>
+                <a class="menu-button {% if active_page == 'start-game' %}active{% endif %}" href="/start-game">START GAME</a>
+            </div>
+        </header>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    </body>
+</html>
