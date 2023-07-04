@@ -107,7 +107,7 @@ def distribute_roles():
 
     role_distribution(game_id, number_players)
 
-    return redirect("/show-player-roles")
+    return redirect("/roles-wait-screen")
 
 
 @routes_bp.route("/get-player-roles")
@@ -126,3 +126,8 @@ def get_player_roles():
 @routes_bp.route("/show-player-roles")
 def show_player_roles():
     return render_template('roles.html')
+
+
+@routes_bp.route("/roles-wait-screen")
+def roles_wait_screen():
+    return render_template('roles-wait-screen.html')
