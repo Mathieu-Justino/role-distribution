@@ -114,9 +114,10 @@ def distribute_roles():
 def get_player_roles():
 
     game_id = session.get("game_id")
+    number_players = session.get("number_players")
 
     db, c = get_db()
-    c.execute("SELECT name, role FROM players WHERE game_id = ?", (game_id,))
+    c.execute("SELECT name, role FROM players WHERE game_id = ? ORDER BY insertion_date DESC LIMIT ?", (game_id, number_players))
     player_roles = c.fetchall()
     db.commit()
 
@@ -131,3 +132,8 @@ def show_player_roles():
 @routes_bp.route("/roles-wait-screen")
 def roles_wait_screen():
     return render_template('roles-wait-screen.html')
+
+
+@routes_bp.route("/game-arena")
+def game_arena():
+    return render_template('game-arena.html')

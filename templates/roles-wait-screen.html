@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Reveal Role</title>
-    </head>
+{% extends "layout.html" %}
+
+{% block title %}
+    Role Distribution 
+{% endblock %}
+
+
+{% block main %}   
+
     <body>
         <h1>Reveal Role</h1>
         <p id="player-name"></p>
         <button id="reveal-button">Reveal Role</button>
         <button id="reset-roles">Reset roles</button>
+        <button id="quit-button">Quit game</button>
         
-        <script src="static/js/test.js"></script>
+        <script src="static/js/roles.js"></script>
     </body>
-</html>
+
+{% endblock %}
