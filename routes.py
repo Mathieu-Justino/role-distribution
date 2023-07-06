@@ -43,12 +43,6 @@ def start_game():
             flash("Please select a valid number of players.", "error")
             return redirect("/start-game")
 
-        db, c = get_db()
-        game_id = str(uuid.uuid4())
-        c.execute("INSERT INTO games (game_id, no_players) VALUES (?, ?)", (game_id, no_players))
-        db.commit()
-
-        session["game_id"] = game_id
         session["number_players"] = no_players
         
         return redirect("/player-names")
@@ -62,12 +56,10 @@ def start_game():
 @routes_bp.route("/player-names", methods=["GET", "POST"])
 def player_names():
 
-    game_id = session.get("game_id")
+    game_id = str(uuid.uuid4())
+    session["game_id"] = game_id
     number_players = session.get("number_players")
 
-    if game_id is None:
-        flash("Number of players not defined", "error")
-        return redirect("/start-game")
     if number_players is None:
         flash("Number of players not defined", "error")
         return redirect("/start-game")
@@ -89,7 +81,7 @@ def player_names():
         db, c = get_db()
         c.executemany("INSERT INTO players (player_id, name, game_id, insertion_date) VALUES (?, ?, ?, ?)", player_names_and_id)
         current_timestamp = datetime.datetime.now()
-        c.execute("INSERT INTO games (start_time) VALUES (?)", (current_timestamp,))
+        c.execute("INSERT INTO games (game_id, no_players, start_time) VALUES (?, ?, ?)", (game_id, number_players, current_timestamp,))
         db.commit()
 
         return redirect("/distribute-roles")
@@ -114,13 +106,28 @@ def distribute_roles():
 def get_player_roles():
 
     game_id = session.get("game_id")
+    number_players = session.get("number_players")
 
     db, c = get_db()
-    c.execute("SELECT name, role FROM players WHERE game_id = ?", (game_id,))
+    c.execute("SELECT name, role FROM players WHERE game_id = ? ORDER BY insertion_date DESC LIMIT ?", (game_id, number_players))
     player_roles = c.fetchall()
     db.commit()
 
     return jsonify(player_roles)
+
+
+@routes_bp.route("/get-player-roles-factions")
+def get_player_roles_factions():
+
+    game_id = session.get("game_id")
+    number_players = session.get("number_players")
+
+    db, c = get_db()
+    c.execute("SELECT name, faction, role FROM players WHERE game_id = ? ORDER BY insertion_date DESC LIMIT ?", (game_id, number_players))
+    player_roles_factions = c.fetchall()
+    db.commit()
+
+    return jsonify(player_roles_factions)
 
 
 @routes_bp.route("/show-player-roles")
@@ -131,3 +138,16 @@ def show_player_roles():
 @routes_bp.route("/roles-wait-screen")
 def roles_wait_screen():
     return render_template('roles-wait-screen.html')
+
+
+@routes_bp.route("/game-arena")
+def game_arena():
+    return render_template('game-arena.html')
+
+@routes_bp.route("/rules-in-game")
+def rules_in_game():
+    return render_template('rules-in-game.html', active_page="rules-in-game")
+
+@routes_bp.route("/how-to-play-in-game")
+def how_to_play_in_game():
+    return render_template('how-to-play-in-game.html', active_page="how-to-play-in-game")

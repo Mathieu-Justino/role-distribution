@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="static/css/styles.css" rel="stylesheet">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <div class="menu-buttons">
+                <a class="menu-button" href="/how-to-play-in-game">HOW TO PLAY</a>
+                <a class="menu-button" href="/rules-in-game">RULES</a>
+                <a class="menu-button" href="/player-names" id="restart-button">RESTART</a>
+                <a class="menu-button" href="/" id="quit-button">QUIT GAME</a>
+            </div>
+            <script src="static/js/game-layout.js"></script>
+        </header>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    </body>
+</html>
