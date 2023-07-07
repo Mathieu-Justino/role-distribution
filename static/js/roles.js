@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const nextButton = document.getElementById("next-button");
     const revealButton = document.getElementById("reveal-button");
     const resetButton = document.getElementById("reset-roles");
-    const quitButton = document.getElementById("quit-button");
+    const allyStatementContainer = document.getElementById("ally-statement");
 
 
     function displayPlayerRole(player) {
-        playerRoleContainer.innerHTML = `<p>${player[0]}: ${player[1]}</p>`;
+        playerRoleContainer.innerHTML = `<p>${player[0]}, your Secret Role is ${player[1]}</p>`;
         
         const fascistAndHitlerNames = [];
         for (let i = 0; i < playerRoles.length; i++) {
@@ -27,17 +27,19 @@ document.addEventListener("DOMContentLoaded", function() {
         
         if (playerRoles.length < 7 && (player[1] == "Fascist" || player[1] == "Hitler")) {
             alliesNamesContainer.innerHTML = "";
+            allyStatementContainer.innerHTML = "Your allies are:"
             for (let i = 0; i < fascistAndHitlerNames.length; i++) {
                 if (player[0] != fascistAndHitlerNames[i][0])
-                    alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i]}</p>`;
+                    alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i][0]}: ${fascistAndHitlerNames[i][1]}</p>`;
             }
         }
 
         if (playerRoles.length >= 7 && player[1] == "Fascist") {
             alliesNamesContainer.innerHTML = "";
+            allyStatementContainer.innerHTML = "Your allies are:"
             for (let i = 0; i < fascistAndHitlerNames.length; i++) {
                 if (player[0] != fascistAndHitlerNames[i][0])
-                    alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i]}</p>`;
+                    alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i][0]}: ${fascistAndHitlerNames[i][1]}</p>`;
             }
         }
     }
@@ -70,17 +72,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     resetButton.addEventListener("click", function() {
-        if (currentRoleIndex < playerRoles.length) {
-            sessionStorage.removeItem("currentRoleIndex");
-            window.location.href = "/distribute-roles";
-        }
-    });
-
-    quitButton.addEventListener("click", function() {
-        if (currentRoleIndex < playerRoles.length) {
-            sessionStorage.removeItem("currentRoleIndex");
-            window.location.href = "/";
-        }
+        sessionStorage.removeItem("currentRoleIndex");
+        window.location.href = "/distribute-roles";
     });
 
 

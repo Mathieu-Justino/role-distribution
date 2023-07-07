@@ -1,0 +1,26 @@
+{% extends "game-layout.html" %}
+
+{% block title %}
+    Game Arena 
+{% endblock %}
+
+
+{% block main %} 
+
+    <body>
+        <table>
+            <tbody id="player-table-body">
+              
+            </tbody>
+        </table>
+        <script src="static/js/game-arena.js"></script>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+              <span id="close" class="close">&times;</span>
+              <p id="role">This is where the role will be displayed</p>
+            </div>
+        </div>
+    </body>
+
+{% endblock %}

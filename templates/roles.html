@@ -1,19 +1,21 @@
-{% extends "layout.html" %}
+{% extends "game-layout.html" %}
 
 {% block title %}
-    Role Distribution 
+    Role Distribution  
 {% endblock %}
 
 
 {% block main %}   
-
     <body>
-        <h1>Player Roles</h1>
+        <h1>Your Role</h1>
+
         <div id="player-role"></div>
+        <div id="ally-statement" style="font-weight: bold;"></div>
         <div id="allies-roles"></div>
-        <button id="next-button">Sounds good!</button>
-        <button id="reset-roles">Reset roles</button>
-        <button id="quit-button">Quit game</button>
+        <br>
+        <div><button id="next-button">Sounds good!</button></div>
+        <br>
+        <div><button id="reset-roles" style="font-size: 12px;">Reset roles</button></div>
 
         <script src="static/js/roles.js"></script>
     </body>

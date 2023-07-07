@@ -9,12 +9,10 @@
     <body>
         <header>
             <div class="menu-buttons">
-                <a class="menu-button" href="/how-to-play-in-game">HOW TO PLAY</a>
-                <a class="menu-button" href="/rules-in-game">RULES</a>
-                <a class="menu-button" href="/player-names" id="restart-button">RESTART</a>
-                <a class="menu-button" href="/" id="quit-button">QUIT GAME</a>
+                <a class="menu-button {% if active_page == 'how-to-play-in-game' %}active{% endif %}" href="/how-to-play-in-game">HOW TO PLAY</a>
+                <a class="menu-button {% if active_page == 'rules-in-game' %}active{% endif %}" href="/rules-in-game">RULES</a>
+                <a class="menu-button" href="/game-arena">CONTINUE GAME</a>
             </div>
-            <script src="static/js/game-layout.js"></script>
         </header>
 
         <main>

@@ -1,18 +1,18 @@
-{% extends "layout.html" %}
+{% extends "game-layout.html" %}
 
 {% block title %}
     Role Distribution 
 {% endblock %}
 
-
 {% block main %}   
 
     <body>
-        <h1>Reveal Role</h1>
+        <h1>Get Ready</h1>
         <p id="player-name"></p>
-        <button id="reveal-button">Reveal Role</button>
-        <button id="reset-roles">Reset roles</button>
-        <button id="quit-button">Quit game</button>
+        <br>
+        <div><button id="reveal-button">Reveal Role</button></div>
+        <br>
+        <div><button id="reset-roles" style="font-size: 12px;">Reset Roles</button></div>
         
         <script src="static/js/roles.js"></script>
     </body>
