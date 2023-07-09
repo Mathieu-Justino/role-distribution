@@ -3,6 +3,8 @@ from flask import g
 
 DATABASE = 'secrethitler.db'
 
+# Import and access SQLite database
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(DATABASE)

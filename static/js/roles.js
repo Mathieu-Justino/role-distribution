@@ -1,6 +1,10 @@
+// This function takes care of the displaying of all player roles
+
 document.addEventListener("DOMContentLoaded", function() {
     const playerRoles = []; // Array to store the player roles
-    let currentRoleIndex = sessionStorage.getItem("currentRoleIndex") || 0; // Retrieve currentRoleIndex from session storage, or set it to 0
+
+    // this counter keeps track of where in the role distribution the user is currently situated and keeps it in session storage (to prevent from going back or accidental refreshes)
+    let currentRoleIndex = sessionStorage.getItem("currentRoleIndex") || 0; 
 
     const playerRoleContainer = document.getElementById("player-role");
     const playerNameContainer = document.getElementById("player-name");
@@ -14,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function displayPlayerRole(player) {
         playerRoleContainer.innerHTML = `<p>${player[0]}, your Secret Role is ${player[1]}</p>`;
         
+        // This function stores who are the Fascists and Hitler, to then display them to their allies
         const fascistAndHitlerNames = [];
         for (let i = 0; i < playerRoles.length; i++) {
             const role = playerRoles[i][1];
@@ -25,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Allies:", fascistAndHitlerNames);
         console.log("Ally:", fascistAndHitlerNames[0]);
         
+
+        // Here, we take care of the two different scenarios where Hitler can see his allies when there are 5 or 6 players, and can't when there are more
         if (playerRoles.length < 7 && (player[1] == "Fascist" || player[1] == "Hitler")) {
             alliesNamesContainer.innerHTML = "";
             allyStatementContainer.innerHTML = "Your allies are:"
@@ -33,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i][0]}: ${fascistAndHitlerNames[i][1]}</p>`;
             }
         }
-
         if (playerRoles.length >= 7 && player[1] == "Fascist") {
             alliesNamesContainer.innerHTML = "";
             allyStatementContainer.innerHTML = "Your allies are:"
@@ -48,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         playerNameContainer.innerHTML = `<p>${player[0]}, are you ready to see your role?</p>`;
     }
 
+    // The next button is used when the player has seen his role, it goes on to the wait screen for the next player
     if (nextButton) {
         nextButton.addEventListener("click", function() {
             if (Number(currentRoleIndex) + 1 < playerRoles.length) {
@@ -62,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // The reveal button is used when the player wants to see his role
     if (revealButton) {
         revealButton.addEventListener("click", function() {
             if (currentRoleIndex < playerRoles.length) {
@@ -71,12 +79,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // The reset button is available throughout the role distribution phase, it is used to reshuffle the roles without inputting 
     resetButton.addEventListener("click", function() {
         sessionStorage.removeItem("currentRoleIndex");
         window.location.href = "/distribute-roles";
     });
 
 
+    // Here we fetch the JSON with the role data
     fetch("/get-player-roles")
         .then(response => response.json())
         .then(data => {

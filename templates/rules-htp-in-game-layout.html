@@ -4,17 +4,27 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="static/css/styles.css" rel="stylesheet">
+        <link href="static/css/navigation-menu.css" rel="stylesheet">
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <header>
+        <header class="top-nav" id="top-nav">
             <div class="menu-buttons">
                 <a class="menu-button {% if active_page == 'how-to-play-in-game' %}active{% endif %}" href="/how-to-play-in-game">HOW TO PLAY</a>
                 <a class="menu-button {% if active_page == 'rules-in-game' %}active{% endif %}" href="/rules-in-game">RULES</a>
                 <a class="menu-button" href="/game-arena">CONTINUE GAME</a>
             </div>
-        </header>
+        
+            <a href="javascript:void(0);" class="icon" onclick="hambMenu()">
+                <div class="container" onclick="iconAnimation(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </a>
 
+            <script src="static/js/hamburger-menu.js"></script>
+         </header>
         <main>
             {% block main %}{% endblock %}
         </main>

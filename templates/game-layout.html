@@ -4,17 +4,29 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="static/css/styles.css" rel="stylesheet">
+        <link href="static/css/navigation-menu.css" rel="stylesheet">
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <header>
+        <header class="top-nav" id="top-nav">
             <div class="menu-buttons">
                 <a class="menu-button" href="/how-to-play-in-game">HOW TO PLAY</a>
                 <a class="menu-button" href="/rules-in-game">RULES</a>
                 <a class="menu-button" href="/player-names" id="restart-button">RESTART</a>
                 <a class="menu-button" href="/" id="quit-button">QUIT GAME</a>
             </div>
+
+            <a href="javascript:void(0);" class="icon" onclick="hambMenu()">
+                <div class="container" onclick="iconAnimation(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </a>
+
+
             <script src="static/js/game-layout.js"></script>
+            <script src="static/js/hamburger-menu.js"></script>
         </header>
 
         <main>

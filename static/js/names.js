@@ -1,3 +1,5 @@
+// This function generates the number of input boxes for player names based on the number of players selected
+
 var playerForm = document.getElementById("player-form");
 if (playerForm) {
     playerForm.addEventListener("submit", generateDefaultValues);
@@ -12,5 +14,4 @@ function generateDefaultValues(event) {
     }
     playerForm.submit();
 }
-
 

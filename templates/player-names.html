@@ -9,6 +9,8 @@
 
     <div>
         <h4>Enter all player names</h4>
+        <p>Enter unique names less than 20 characters long. Empty boxes will default to Player 1, Player 2, etc.</p>
+        <br>
 
         {% with messages = flash_messages %}
             {% if messages %}
@@ -25,10 +27,11 @@
                 <input class="name-input" type="text" name="player{{ i+1 }}" placeholder="Player {{ i+1 }}">
                 <br>
             {% endfor %}
+            <br>
             <button type="submit">Start Game</button>
         </form>
 
-        <script src="static/js/name-autofill.js"></script>
+        <script src="static/js/names.js"></script>
 
     </div>    
 

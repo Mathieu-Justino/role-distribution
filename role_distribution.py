@@ -1,6 +1,7 @@
 from database import get_db
 import random
 
+# This function takes care of the role distribution depending on the number of players, and updates the SQL database
 
 def role_distribution(game_id, number_players):
     db, c = get_db()

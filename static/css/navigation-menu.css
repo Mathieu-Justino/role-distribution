@@ -1,0 +1,150 @@
+header {
+    background-color: #f2654b;
+    height: 80px;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.menu-buttons {
+    margin-left: 15px;
+    float: left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-button {
+    float: left;
+    color: #353535;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 18px;
+    line-height: 15px;
+    font-weight: bold;
+    position: relative;
+}
+
+.menu-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background-color: #353535;
+    transition: all 0.2s ease-in-out;
+    transform: scaleX(0);
+    transform-origin: center;
+}
+
+.menu-button:hover::after {
+    transform: scaleX(1);
+}
+.menu-button.active::after {
+    transform: scaleX(1);
+}
+
+.text-link:hover::after {
+    transform: scaleX(1);
+}
+
+.menu-button:hover {
+    color: #353535;
+}
+
+.menu-button.active {
+    color: #353535;
+}
+
+.menu-button.active::after {
+    transform: scaleX(1);
+}
+
+header .logo {
+    height: 60px;
+    float: right;
+    padding-right: 15px;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+header .icon {
+    display: none;
+}
+
+
+@media screen and (max-width: 580px) {
+
+    header {
+        transition: height 0.4s;
+        height: unset;
+        min-height: 80px;
+    }
+
+    header .menu-buttons {
+        transform: unset;
+        padding-right: 25px;
+        padding-top: 18px;
+    }
+    .container {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .bar1, .bar2, .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: #353535;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+    
+    .change .bar1 {
+        transform: translate(0, 11px) rotate(-45deg);
+    }
+    
+    .change .bar2 {opacity: 0;}
+    
+    .change .bar3 {
+        transform: translate(0, -11px) rotate(45deg);
+    }
+
+
+    header a:not(:first-child) {display: none;}
+    header a.icon {
+        float: right;
+        display: block;
+        position: relative;
+        padding-right: 25px;
+        padding-top: 20px;
+    }
+
+    header.responsive {
+        min-height: 80px;
+    }
+    header.responsive .icon {
+        position: relative;
+        float: right;
+        padding-right: 25px;
+        padding-top: 20px;
+    }
+    header.responsive .menu-buttons {
+        transform: unset;
+        padding-right: 25px;
+        padding-top: 18px;
+    }
+    header.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    header .logo {
+        display: none;
+    }
+    
+}
