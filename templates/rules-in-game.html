@@ -15,7 +15,7 @@
     <div>
         <a href="https://www.secrethitler.com/assets/Secret_Hitler_Rules.pdf"><button>Rules</button></a>
 
-        <a href="/game-arena"><button>Continue Game</button></a>
+        <a href="{{ url_for('routes.game_arena', game_id=game_id) }}"><button>Continue Game</button></a>
     </div>
 
 </body>

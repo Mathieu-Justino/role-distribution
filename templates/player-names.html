@@ -22,16 +22,16 @@
             {% endif %}
         {% endwith %}
 
-        <form id="player-form" action="/player-names" method="post">
+        <form id="player-form" action="{{ url_for('routes.player_names', game_id=game_id) }}" method="post">
             {% for i in range(number_players) %}
-                <input class="name-input" type="text" name="player{{ i+1 }}" placeholder="Player {{ i+1 }}">
+                <input class="name-input" type="text" name="player{{ i+1 }}" placeholder="Player {{ i+1 }}" value="{{ previous_player_names[i] if i < previous_player_names|length }}">
                 <br>
             {% endfor %}
             <br>
             <button type="submit">Start Game</button>
         </form>
 
-        <script src="static/js/names.js"></script>
+        <script src="{{ url_for('static', filename='js/names.js') }}"></script>
 
     </div>    
 

@@ -8,12 +8,49 @@
 {% block main %} 
 
     <body>
+
+        <div id="election-container">
+            <h2 id="president-name">President: [Player Name]</h2>
+            <div id="chancellor-selection" style="display: none;">
+                <h3>Select a Chancellor:</h3>
+                <ul id="chancellor-list">
+                    </ul>
+            </div>
+        </div>
+
+        <div id="vote-result-container" style="display: none;">
+            <p>Has the government been approved?</p>
+            <button id="approved-button">Approved</button>
+            <button id="rejected-button">Rejected</button>
+        </div>
+
+        <div id="policy-selection-container" style="display: none;">
+            <h2>Policy Selection</h2>
+            <p id="policy-selection-statement"></p>
+            
+            <div id="presidents-policy-area" style="display: none;">
+                <h3>President, select a policy to discard:</h3>
+                <div class="policy-card-container" id="presidents-policies">
+                    </div>
+            </div>
+            
+            <div id="chancellors-policy-area" style="display: none;">
+                <h3>Chancellor, select a policy to enact:</h3>
+                <div class="policy-card-container" id="chancellors-policies">
+                    </div>
+            </div>
+        </div>
+
         <table>
             <tbody id="player-table-body">
               
             </tbody>
         </table>
-        <script src="static/js/game-arena.js"></script>
+
+        <script>
+            var gameId = "{{ game_id }}";
+        </script>
+        <script src="{{ url_for('static', filename='js/game-arena.js') }}"></script>
 
         <div id="modal" class="modal">
             <div class="modal-content">

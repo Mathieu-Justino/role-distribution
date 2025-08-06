@@ -16,7 +16,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function displayPlayerRole(player) {
-        playerRoleContainer.innerHTML = `<p>${player[0]}, your Secret Role is ${player[1]}</p>`;
+
+        let roleClass = '';
+
+        if (player[1] === "Liberal") {
+            roleClass = 'liberal-role';
+        } else if (player[1] === "Fascist" || player[1] === "Hitler") {
+            roleClass = 'fascist-role';
+        }
+
+        playerRoleContainer.innerHTML = `<p>${player[0]}, your Secret Role is <strong class="${roleClass}">${player[1]}</strong></p>`;
         
         // This function stores who are the Fascists and Hitler, to then display them to their allies
         const fascistAndHitlerNames = [];
@@ -37,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
             allyStatementContainer.innerHTML = "Your allies are:"
             for (let i = 0; i < fascistAndHitlerNames.length; i++) {
                 if (player[0] != fascistAndHitlerNames[i][0])
-                    alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i][0]}: ${fascistAndHitlerNames[i][1]}</p>`;
+                    alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i][0]}: <strong class="fascist-role">${fascistAndHitlerNames[i][1]}</strong></p>`;
             }
         }
         if (playerRoles.length >= 7 && player[1] == "Fascist") {
@@ -45,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
             allyStatementContainer.innerHTML = "Your allies are:"
             for (let i = 0; i < fascistAndHitlerNames.length; i++) {
                 if (player[0] != fascistAndHitlerNames[i][0])
-                    alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i][0]}: ${fascistAndHitlerNames[i][1]}</p>`;
+                    alliesNamesContainer.innerHTML += `<p>${fascistAndHitlerNames[i][0]}: <strong class="fascist-role">${fascistAndHitlerNames[i][1]}</strong></p>`;
             }
         }
     }
@@ -61,10 +70,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 displayPlayerRole(playerRoles[currentRoleIndex]);
                 currentRoleIndex++;
                 sessionStorage.setItem("currentRoleIndex", currentRoleIndex); // Store updated currentRoleIndex in session storage
-                window.location.href = "/roles-wait-screen";
+                window.location.href = "/roles-wait-screen/" + gameId;
             } else {
                 sessionStorage.removeItem("currentRoleIndex");
-                window.location.href = "/game-arena";
+                window.location.href = "/game-arena/" + gameId;
             }
         });
     }
@@ -74,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
         revealButton.addEventListener("click", function() {
             if (currentRoleIndex < playerRoles.length) {
                 displayPlayerName(playerRoles[currentRoleIndex]);
-                window.location.href = "/show-player-roles";
+                window.location.href = "/show-player-roles/" + gameId;
             }
         });
     }
@@ -82,12 +91,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // The reset button is available throughout the role distribution phase, it is used to reshuffle the roles without inputting 
     resetButton.addEventListener("click", function() {
         sessionStorage.removeItem("currentRoleIndex");
-        window.location.href = "/distribute-roles";
+        window.location.href = "/distribute-roles/" + gameId;
     });
 
 
     // Here we fetch the JSON with the role data
-    fetch("/get-player-roles")
+    fetch("/get-player-roles/" + gameId)
         .then(response => response.json())
         .then(data => {
             playerRoles.push(...data); // Add player roles to the array

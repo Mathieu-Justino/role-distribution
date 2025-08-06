@@ -92,6 +92,12 @@ button:active {
     cursor: pointer;
 }
 
+.liberal-role {
+    color: #6a2ef5; 
+}
+.fascist-role {
+    color: #990f06; 
+}
 
 .name-input {
     width: 60%;

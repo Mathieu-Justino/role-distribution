@@ -2,3 +2,5 @@ __pycache__/app.cpython-311.pyc
 __pycache__/database.cpython-311.pyc
 __pycache__/role_distribution.cpython-311.pyc
 __pycache__/routes.cpython-311.pyc
+__pycache__/
+tests/

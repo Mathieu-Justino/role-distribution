@@ -14,7 +14,10 @@
         <br>
         <div><button id="reset-roles" style="font-size: 12px; background-color: red;">Reset Roles</button></div>
         
-        <script src="static/js/roles.js"></script>
+        <script>
+            var gameId = "{{ game_id }}";
+        </script>
+        <script src="{{ url_for('static', filename='js/roles.js') }}"></script>
     </body>
 
 {% endblock %}

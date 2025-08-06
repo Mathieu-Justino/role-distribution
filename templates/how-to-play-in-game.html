@@ -53,7 +53,7 @@
         <!-- <a href="/start-game"><button>Start Game</button></a> -->
         
     </div>
-    <a href="/game-arena"><button>Continue Game</button></a>
+    <a href="{{ url_for('routes.game_arena', game_id=game_id) }}"><button>Continue Game</button></a>
 
 </body>
 
